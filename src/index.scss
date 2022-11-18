@@ -1,0 +1,302 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.modal{
+  height: 100vh;
+  background-color:rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__content{
+    padding: 20px;
+    background-color: white;
+    width: 700px;
+    height: 649px;
+    border-radius: 20px;
+  }
+}
+
+.bg {
+  background: #f9f9f9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding-top: 5px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 1000px;
+}
+.alpha {
+  background: transparent;
+  border-radius: 20px;
+  border: none;
+  color: #8e8e8e;
+  font-weight: 400;
+  font-size: 14px;
+  height: 13px;
+}
+.userName {
+  font-weight: 500;
+  font-size: 14px;
+}
+.header {
+  border: 1px solid #efefef;
+  background: white;
+  position: sticky;
+  top: 0;
+
+  .navBar {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    height: 60px;
+    width: 1100px;
+    align-items: center;
+    .logo {
+      margin-top: 7px;
+    }
+    .form {
+      display: flex;
+      align-items: center;
+      background: #efefef;
+      border-radius: 8px;
+      div {
+        width: 46px;
+        font-weight: 400;
+        font-size: 16px;
+      }
+      img {
+        padding-left: 21px;
+      }
+      input {
+        width: 252px;
+        height: 36px;
+        background: #efefef;
+        font-weight: 400;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+      }
+    }
+    .icons {
+      .profile {
+        border-radius: 20px;
+        border: none;
+        background: transparent;
+        img {
+          margin-left: 25px;
+          border-radius: 15px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+      .btn {
+        cursor: pointer;
+        background: transparent;
+        border-radius: 20px;
+        margin-left: 25px;
+        border: none;
+      }
+    }
+  }
+}
+
+.post {
+  width: 600px;
+  height: 909px;
+  background: #ffffff;
+  margin-top: 20px;
+  border-radius: 3px 3px 0px 0px;
+  border: 1px solid #efefef;
+  .userBlock {
+    margin: 17px;
+    .likes {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .title {
+      margin-top: 7px;
+      .userComment {
+        margin-left: 8px;
+      }
+    }
+  }
+  &__img {
+    img {
+      width: 600px;
+      height: 600px;
+      object-fit: cover;
+    }
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+    margin: auto;
+    .options {
+      font-size: 30px;
+      margin-top: 4px;
+    }
+  }
+  .account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: 60px;
+    &__img {
+      img {
+        width: 32px;
+        height: 32px;
+        background: #c4c4c4;
+        border-radius: 15px;
+      }
+    }
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px auto;
+    .save {
+      margin-left: -6px;
+      img {
+        margin-right: 24px;
+      }
+    }
+    .elements {
+      img {
+        padding-left: 15px;
+      }
+    }
+  }
+}
+.hours {
+  font-weight: 400;
+  font-size: 12px;
+}
+.form-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: auto;
+  border-top: 1px solid #efefef;
+  input {
+    border: none;
+    width: 500px;
+    height: 52px;
+  }
+  button {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 149, 246, 0.25);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+.accounts {
+  margin-top: 50px;
+}
+.suggestions {
+  width: 300px;
+  .allSuggestions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      background: transparent;
+      border: none;
+      color: #262626;
+
+      font-weight: 500;
+      font-size: 12px;
+    }
+    .alpha {
+      font-weight: 400;
+      font-size: 14px;
+      height: 20px;
+    }
+  }
+  .change {
+    color: #0095f6;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 13px;
+  }
+}
+.myAccount {
+  .title {
+    margin-right: 25px;
+    p {
+      height: 10px;
+    }
+  }
+  img {
+    width: 56px;
+    height: 56px;
+    border-radius: 30px;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.suggestionsAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .title {
+    margin-right: 85px;
+    .nickname {
+      font-size: 14px;
+      font-weight: 500;
+      height: 7px;
+      margin-top: 8px;
+    }
+    .alpha {
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+  }
+  .follow {
+    color: #0095f6;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+.subtitle {
+  .alpha {
+    max-width: 300px;
+    height: 54px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8e8e8e;
+  }
+}
