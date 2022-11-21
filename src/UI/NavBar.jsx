@@ -33,7 +33,7 @@ const NavBar = () => {
             <button className="btn">
               <img src={msg} alt="" />
             </button>
-            <button className="btn">
+            <button onClick={() => setModalActive(true)} className="btn">
               <img src={add} alt="" />
             </button>
             <button className="btn">

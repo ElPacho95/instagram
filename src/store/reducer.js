@@ -1,4 +1,4 @@
-import { fetchAPI } from "./api";
+import { get, getId, post } from "./api";
 import userPic from "../UI/assets/user-pic.svg";
 const initialState = {
   profile: {},
@@ -36,6 +36,8 @@ const initialState = {
     },
   ],
   loading: false,
+  postAddLoading: false,
+  postIdLoading: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -46,6 +48,22 @@ export const reducer = (state = initialState, action) => {
       return { ...state, profile: action.payload, loading: false };
     case "posts/load/fulfilled":
       return { ...state, posts: action.payload, loading: false };
+    case "post/add/started":
+      return { ...state, postAddLoading: true };
+    case "post/add/fulfilled":
+      return {
+        ...state,
+        postAddLoading: false,
+        posts: [action.payload, ...state.posts],
+      };
+    case "post/getId/started":
+      return { ...state, postIdLoading: true };
+    case "post/getId/fulfilled":
+      return {
+        ...state,
+        postIdLoading: false,
+        posts: action.payload,
+      };
     default:
       return state;
   }
@@ -54,7 +72,7 @@ export const reducer = (state = initialState, action) => {
 export const loadProfile = () => {
   return async (dispatch) => {
     dispatch({ type: "pending" });
-    const response = await fetchAPI("profile");
+    const response = await get("profile");
     const profile = await response.json();
     dispatch({
       type: "profile/load/fulfilled",
@@ -66,11 +84,32 @@ export const loadProfile = () => {
 export const loadPosts = () => {
   return async (dispatch) => {
     dispatch({ type: "pending" });
-    const response = await fetchAPI("posts");
+    const response = await get("posts");
     const posts = await response.json();
     dispatch({
       type: "posts/load/fulfilled",
       payload: posts,
     });
+  };
+};
+
+export const addPost = (body) => {
+  return async (dispatch) => {
+    dispatch({ type: "post/add/started" });
+    const response = await post("posts", JSON.stringify(body));
+    const newPost = await response.json();
+    dispatch({
+      type: "post/add/fulfilled",
+      payload: newPost,
+    });
+  };
+};
+
+export const deletePost = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: "post/getId/started" });
+    const response = await getId("posts", id);
+    const postId = await response.json();
+    dispatch({ type: "post/getId/fulfilled", payload: postId });
   };
 };

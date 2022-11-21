@@ -4,11 +4,13 @@ import comments from "./assets/comments.svg";
 import send from "./assets/share.svg";
 import save from "./assets/save.svg";
 import emojis from "./assets/emojis.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "../store/reducer";
 
 const Card = (props) => {
-  const { likes, description, image } = props;
+  const { likes, description, image, id } = props;
   const profile = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
   return (
     <div className="post">
       <div className="post__header">
@@ -18,7 +20,9 @@ const Card = (props) => {
           </div>
           <div className="userName">{profile.username}</div>
         </div>
-        <div className="options">...</div>
+        <div onClick={() => dispatch(deletePost(id))} className="options">
+          ...
+        </div>
       </div>
       <div className="post__img">
         <img src={image} alt="" />
@@ -39,9 +43,7 @@ const Card = (props) => {
         <div className="title">
           <span className="userName">{profile.username}</span>
 
-          <span className="userComment">
-            {description.length > 21 && `${description.substring(0, 100)}`}
-          </span>
+          <span className="userComment">{description.length === 21}</span>
           <span>
             <button className="alpha">... more</button>
           </span>

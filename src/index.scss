@@ -13,25 +13,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.modal{
-  height: 100vh;
-  background-color:rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &__content{
-    padding: 20px;
-    background-color: white;
-    width: 700px;
-    height: 649px;
-    border-radius: 20px;
-  }
-}
 
 .bg {
   background: #f9f9f9;
@@ -87,6 +68,7 @@ code {
         padding-left: 21px;
       }
       input {
+        outline: none;
         width: 252px;
         height: 36px;
         background: #efefef;
@@ -300,3 +282,91 @@ code {
     color: #8e8e8e;
   }
 }
+.modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.5s;
+  &__content {
+    background-color: white;
+    width: 956px;
+    height: 677px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+      0px -4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    .url {
+      width: 928px;
+      border: 1px solid #dbdbdb;
+      height: 53px;
+      margin-top: 20px;
+      outline: none;
+      padding-left: 24px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 10px auto;
+      align-items: center;
+      border-bottom: 1px solid #dbdbdb;
+      height: 65px;
+      img {
+        cursor: pointer;
+      }
+      button {
+        font-weight: 600;
+        font-size: 18px;
+        border: none;
+        background: transparent;
+        color: #0095f6;
+        cursor: pointer;
+      }
+      h1 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+      }
+    }
+  }
+}
+.modal.active {
+  opacity: 1;
+}
+.form-block {
+  margin-left: 30px;
+  input {
+    outline: none;
+    border: none;
+    width: 900px;
+  }
+  .smile {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+  }
+}
+.account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 170px;
+  height: 60px;
+  &__img {
+    img {
+      width: 32px;
+      height: 32px;
+      background: #c4c4c4;
+      border-radius: 15px;
+    }
+  }
+}
+

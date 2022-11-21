@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts, loadProfile } from "../store/reducer";
 import Card from "./Card";
 import Suggestions from "./Suggestions";
-import Modal from "./Modal";
 const Content = () => {
   const loading = useSelector((state) => state.loading);
-
   const posts = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
@@ -17,7 +15,7 @@ const Content = () => {
   }, []);
 
   if (loading) {
-    return <h1>loading</h1>;
+    return <div className="bg"></div>;
   }
 
   return (
@@ -31,6 +29,7 @@ const Content = () => {
                 description={item.description}
                 image={item.image}
                 key={item.id}
+                id={item.id}
               />
             );
           })}
