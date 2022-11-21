@@ -1,6 +1,6 @@
 import React from "react";
 
-const Accounts = ({ suggestion, nickName, image, btn }) => {
+const Account = ({ suggestion, nickName, image, btn }) => {
   return (
     <div className="suggestions">
       <div>
@@ -17,4 +17,4 @@ const Accounts = ({ suggestion, nickName, image, btn }) => {
   );
 };
 
-export default Accounts;
+export default Account;

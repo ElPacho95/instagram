@@ -17,12 +17,10 @@
         {
           "id": 22,
           "text": "Ответили в дайрект",
-          "user": [
-            {
-              "username": "askhab.us",
-              "profile_img": "https://i.scdn.co/image/ab67616d0000b27377308a8b6fe0925e78b73ec2"
-            }
-          ]
+          "user": {
+            "username": "askhab.us",
+            "profile_img": "https://i.scdn.co/image/ab67616d0000b27377308a8b6fe0925e78b73ec2"
+          }
         }
       ],
       "user": {

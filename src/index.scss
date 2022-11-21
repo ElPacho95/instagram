@@ -53,6 +53,9 @@ code {
     align-items: center;
     .logo {
       margin-top: 7px;
+      img{
+        width: 103px;
+      }
     }
     .form {
       display: flex;
@@ -103,7 +106,6 @@ code {
 
 .post {
   width: 600px;
-  height: 909px;
   background: #ffffff;
   margin-top: 20px;
   border-radius: 3px 3px 0px 0px;
@@ -284,7 +286,8 @@ code {
 }
 .modal {
   background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
+  position: absolute;
+  z-index: 999;
   top: 0;
   left: 0;
   right: 0;
@@ -342,13 +345,18 @@ code {
 }
 .form-block {
   margin-left: 30px;
-  input {
+  textarea {
     outline: none;
     border: none;
     width: 900px;
   }
+  textarea{
+    resize: none;
+    height: 150px;
+    font-weight: 300;
+    font-size: 14px;
+  }
   .smile {
-    margin-top: 150px;
     display: flex;
     justify-content: space-between;
     padding-right: 20px;

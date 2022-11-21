@@ -16,7 +16,9 @@ const Modal = ({ active, setActive }) => {
     comments: [],
     user: profile,
   };
-
+  if (!active) {
+    return null;
+  }
   return (
     <div
       className={active ? "modal active" : "modal"}
@@ -37,7 +39,7 @@ const Modal = ({ active, setActive }) => {
             </div>
             <div>{profile.username}</div>
           </div>
-          <input
+          <textarea
             value={description}
             onChange={(e) => setDescription(e.currentTarget.value)}
             type="text"
@@ -45,7 +47,7 @@ const Modal = ({ active, setActive }) => {
           />
           <div className="smile">
             <img src={emojis} alt="" />
-            <p className="alpha">0/2,200</p>
+            <p className="alpha">{description?.length}/2,200</p>
           </div>
         </div>
         <input

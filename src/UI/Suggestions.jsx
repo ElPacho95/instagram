@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Accounts from "./Accounts";
+import Account from "./Account";
 
 const Suggestions = () => {
   const profile = useSelector((state) => state.profile);
@@ -26,11 +26,12 @@ const Suggestions = () => {
       <div>
         {profiles.map((item) => {
           return (
-            <Accounts
+            <Account
               nickName={item.nickName}
               image={item.image}
               btn={item.btn}
               suggestion={item.suggestion}
+              key={item.id}
             />
           );
         })}

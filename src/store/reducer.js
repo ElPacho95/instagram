@@ -1,34 +1,39 @@
-import { get, getId, post } from "./api";
+import { get, getDelete, post } from "./api";
 import userPic from "../UI/assets/user-pic.svg";
 const initialState = {
   profile: {},
   posts: [],
   profiles: [
     {
+      id: 1,
       nickName: "janedoe",
       suggestion: "Suggestion for you",
       image: userPic,
       btn: "Follow",
     },
     {
+      id: 2,
       nickName: "robertdoe",
       suggestion: "Suggestion for you",
       image: userPic,
       btn: "Follow",
     },
     {
+      id: 3,
       nickName: "sandradoe",
       suggestion: "Suggestion for you",
       image: userPic,
       btn: "Follow",
     },
     {
+      id: 4,
       nickName: "pepedoe_",
       suggestion: "Suggestion for you",
       image: userPic,
       btn: "Follow",
     },
     {
+      id: 5,
       nickName: "simon.doe",
       suggestion: "Suggestion for you",
       image: userPic,
@@ -108,8 +113,7 @@ export const addPost = (body) => {
 export const deletePost = (id) => {
   return async (dispatch) => {
     dispatch({ type: "post/getId/started" });
-    const response = await getId("posts", id);
-    const postId = await response.json();
-    dispatch({ type: "post/getId/fulfilled", payload: postId });
+    await getDelete("posts", id);
+    dispatch({ type: "post/getId/fulfilled", payload: id });
   };
 };

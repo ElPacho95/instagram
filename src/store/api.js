@@ -13,7 +13,7 @@ export const post = (path, body) => {
     body,
   });
 };
-export const getId = (path, id) => {
+export const getDelete = (path, id) => {
   return fetch(`${baseUrl}/${path}/${id}`, {
     method: "DELETE",
   });

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts, loadProfile } from "../store/reducer";
-import Card from "./Card";
+import Post from "./Post";
 import Suggestions from "./Suggestions";
 const Content = () => {
   const loading = useSelector((state) => state.loading);
@@ -24,7 +24,7 @@ const Content = () => {
         <div>
           {posts.map((item) => {
             return (
-              <Card
+              <Post
                 likes={item.likes}
                 description={item.description}
                 image={item.image}

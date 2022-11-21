@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import heart from "./assets/heart.svg";
-import comments from "./assets/comments.svg";
+import commentsIcon from "./assets/comments.svg";
 import send from "./assets/share.svg";
 import save from "./assets/save.svg";
 import emojis from "./assets/emojis.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../store/reducer";
 
-const Card = (props) => {
+const Post = (props) => {
   const { likes, description, image, id } = props;
   const profile = useSelector((state) => state.profile);
+  const comments = useSelector((state) =>
+    state.posts.map((item) => item.comments)
+  );
+  const [showDescription, setShowDescription] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  console.log(comments);
   const dispatch = useDispatch();
   return (
     <div className="post">
@@ -30,7 +36,7 @@ const Card = (props) => {
       <div className="post__icons">
         <div className="elements">
           <img src={heart} alt="" />
-          <img src={comments} alt="" />
+          <img src={commentsIcon} alt="" />
           <img src={send} alt="" />
         </div>
         <div className="save">
@@ -39,17 +45,37 @@ const Card = (props) => {
       </div>
 
       <div className="userBlock">
-        <div className="likes">{likes} likes</div>
+        <div className="likes">{!likes ? 0 : likes} likes</div>
         <div className="title">
           <span className="userName">{profile.username}</span>
 
-          <span className="userComment">{description.length === 21}</span>
+          <span className="userComment">
+            {showDescription ? description : description.substring(0, 100)}
+          </span>
           <span>
-            <button className="alpha">... more</button>
+            <button
+              onClick={() => setShowDescription(!showDescription)}
+              className="alpha"
+            >
+              {showDescription ? "close" : "...more"}
+            </button>
           </span>
         </div>
 
-        <p className="alpha">See comments</p>
+        {showComments ? (
+          comments.map((item) => {
+            return (
+              <div className="title">
+                <span className="userName">{item.user.username}</span>
+                <span className="userComment">{item.text}</span>
+              </div>
+            );
+          })
+        ) : (
+          <p onClick={() => setShowComments(!showComments)} className="alpha">
+            {showComments ? "Close comments" : "See comments"}
+          </p>
+        )}
         <p className="alpha hours">9 HOURS AGO</p>
       </div>
       <div className="form-card">
@@ -61,4 +87,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default Post;

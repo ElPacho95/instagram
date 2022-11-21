@@ -1,4 +1,4 @@
-import logo from "./assets/LOGO.jpg";
+import logo from "./assets/LOGO.png";
 import home from "./assets/home.svg";
 import msg from "./assets/msg.svg";
 import add from "./assets/add.svg";
