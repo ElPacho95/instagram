@@ -1,5 +1,5 @@
 import { get, getDelete, post } from "./api";
-import userPic from "../UI/assets/user-pic.svg";
+import userPic from "../assets/user-pic.svg";
 const initialState = {
   profile: {},
   posts: [],
@@ -61,13 +61,13 @@ export const reducer = (state = initialState, action) => {
         postAddLoading: false,
         posts: [action.payload, ...state.posts],
       };
-    case "post/getId/started":
+    case "post/getDelete/started":
       return { ...state, postIdLoading: true };
-    case "post/getId/fulfilled":
+    case "post/getDelete/fulfilled":
       return {
         ...state,
         postIdLoading: false,
-        posts: action.payload,
+        posts: state.posts.filter((item) => item.id !== action.payload),
       };
     default:
       return state;
@@ -112,8 +112,8 @@ export const addPost = (body) => {
 
 export const deletePost = (id) => {
   return async (dispatch) => {
-    dispatch({ type: "post/getId/started" });
+    dispatch({ type: "post/getDelete/started" });
     await getDelete("posts", id);
-    dispatch({ type: "post/getId/fulfilled", payload: id });
+    dispatch({ type: "post/getDelete/fulfilled", payload: id });
   };
 };

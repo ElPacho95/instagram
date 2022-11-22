@@ -1,5 +1,5 @@
-import NavBar from "./UI/NavBar";
-import Content from "./UI/Content";
+import NavBar from "./UI/NavBar/NavBar";
+import Content from "./UI/Content/Content";
 
 function App() {
   return (

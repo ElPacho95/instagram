@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import arrow from "./assets/Arrow 1.svg";
-import emojis from "./assets/emojis.svg";
+import arrow from "../../assets/Arrow 1.svg";
+import emojis from "../../assets/emojis.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../store/reducer";
+import { addPost } from "../../store/reducer";
+import "./Modal.scss";
+
 const Modal = ({ active, setActive }) => {
   const profile = useSelector((state) => state.profile);
   const [imageUrl, setImageUrl] = useState("");
@@ -10,15 +12,21 @@ const Modal = ({ active, setActive }) => {
 
   const dispatch = useDispatch();
 
-  const mockPost = {
-    image: imageUrl,
-    description: description,
-    comments: [],
-    user: profile,
+  const handleAddPost = () => {
+    const Post = {
+      image: imageUrl,
+      description: description,
+      comments: [],
+      user: profile,
+    };
+    dispatch(addPost(Post));
+    setActive(false);
   };
+
   if (!active) {
     return null;
   }
+
   return (
     <div
       className={active ? "modal active" : "modal"}
@@ -28,8 +36,8 @@ const Modal = ({ active, setActive }) => {
         <div className="modal-header">
           <img onClick={() => setActive(false)} src={arrow} alt="" />
           <h1>Создание публикации</h1>
-          <button onClick={() => dispatch(addPost(mockPost))}>
-            <span onClick={() => setActive(false)}>Поделиться</span>
+          <button onClick={handleAddPost}>
+            <span>Поделиться</span>
           </button>
         </div>
         <div className="form-block">

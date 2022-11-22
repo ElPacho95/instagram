@@ -1,0 +1,29 @@
+.suggestionsAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .title {
+    margin-right: 85px;
+    .nickname {
+      font-size: 14px;
+      font-weight: 500;
+      height: 7px;
+      margin-top: 8px;
+    }
+    .alpha {
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+  }
+  .follow {
+    color: #0095f6;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}

@@ -1,17 +1,19 @@
-import logo from "./assets/LOGO.png";
-import home from "./assets/home.svg";
-import msg from "./assets/msg.svg";
-import add from "./assets/add.svg";
-import compass from "./assets/compass.svg";
-import heart from "./assets/heart.svg";
-import search from "./assets/search.svg";
+import logo from "../../assets/LOGO.png";
+import home from "../../assets/home.svg";
+import msg from "../../assets/msg.svg";
+import add from "../../assets/add.svg";
+import compass from "../../assets/compass.svg";
+import heart from "../../assets/heart.svg";
+import search from "../../assets/search.svg";
 import { useSelector } from "react-redux";
-import Modal from "./Modal";
+import Modal from "../Modal/Modal";
+import "./NavBar.scss";
 import React, { useState } from "react";
 
 const NavBar = () => {
   const profile = useSelector((state) => state.profile);
   const [modalActive, setModalActive] = useState(false);
+
   return (
     <div>
       <Modal active={modalActive} setActive={setModalActive} />

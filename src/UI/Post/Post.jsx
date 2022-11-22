@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-import heart from "./assets/heart.svg";
-import commentsIcon from "./assets/comments.svg";
-import send from "./assets/share.svg";
-import save from "./assets/save.svg";
-import emojis from "./assets/emojis.svg";
+import heart from "../../assets/heart.svg";
+import commentsIcon from "../../assets/comments.svg";
+import send from "../../assets/share.svg";
+import save from "../../assets/save.svg";
+import emojis from "../../assets/emojis.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../store/reducer";
+import { deletePost } from "../../store/reducer";
+import "./Post.scss";
+import Dropdown from "../../Dropdown/Dropdown";
 
 const Post = (props) => {
-  const { likes, description, image, id } = props;
+  const { likes, description, image, id, comments } = props;
   const profile = useSelector((state) => state.profile);
-  const comments = useSelector((state) =>
-    state.posts.map((item) => item.comments)
-  );
+
   const [showDescription, setShowDescription] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  console.log(comments);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="post">
       <div className="post__header">
@@ -26,8 +31,8 @@ const Post = (props) => {
           </div>
           <div className="userName">{profile.username}</div>
         </div>
-        <div onClick={() => dispatch(deletePost(id))} className="options">
-          ...
+        <div onClick={handleOpen} className="options">
+          {open ? <Dropdown handleOpen={handleOpen} /> : <div>...</div>}
         </div>
       </div>
       <div className="post__img">
@@ -52,17 +57,20 @@ const Post = (props) => {
           <span className="userComment">
             {showDescription ? description : description.substring(0, 100)}
           </span>
-          <span>
-            <button
-              onClick={() => setShowDescription(!showDescription)}
-              className="alpha"
-            >
-              {showDescription ? "close" : "...more"}
-            </button>
-          </span>
+
+          {description.length > 100 && (
+            <span>
+              <button
+                onClick={() => setShowDescription(!showDescription)}
+                className="alpha"
+              >
+                {showDescription ? "close" : "...more"}
+              </button>
+            </span>
+          )}
         </div>
 
-        {showComments ? (
+        {showComments &&
           comments.map((item) => {
             return (
               <div className="title">
@@ -70,12 +78,11 @@ const Post = (props) => {
                 <span className="userComment">{item.text}</span>
               </div>
             );
-          })
-        ) : (
-          <p onClick={() => setShowComments(!showComments)} className="alpha">
-            {showComments ? "Close comments" : "See comments"}
-          </p>
-        )}
+          })}
+        <p onClick={() => setShowComments(!showComments)} className="alpha">
+          {showComments ? "Hide comments" : "See comments"}
+        </p>
+
         <p className="alpha hours">9 HOURS AGO</p>
       </div>
       <div className="form-card">

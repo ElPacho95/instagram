@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Account from "./Account";
+import Account from "../Account/Account";
+import "./Suggestions.scss";
 
 const Suggestions = () => {
   const profile = useSelector((state) => state.profile);
   const profiles = useSelector((state) => state.profiles);
+
   return (
     <div className="accounts" style={{ marginTop: "50px" }}>
       <div className="suggestions">
