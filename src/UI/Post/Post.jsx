@@ -4,8 +4,7 @@ import commentsIcon from "../../assets/comments.svg";
 import send from "../../assets/share.svg";
 import save from "../../assets/save.svg";
 import emojis from "../../assets/emojis.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../../store/reducer";
+import { useSelector } from "react-redux";
 import "./Post.scss";
 import Dropdown from "../../Dropdown/Dropdown";
 
@@ -16,7 +15,6 @@ const Post = (props) => {
   const [showDescription, setShowDescription] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(!open);
@@ -32,7 +30,7 @@ const Post = (props) => {
           <div className="userName">{profile.username}</div>
         </div>
         <div onClick={handleOpen} className="options">
-          {open ? <Dropdown handleOpen={handleOpen} /> : <div>...</div>}
+          {open ? <Dropdown id={id} /> : <div className="points">...</div>}
         </div>
       </div>
       <div className="post__img">

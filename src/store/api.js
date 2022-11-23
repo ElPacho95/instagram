@@ -18,3 +18,16 @@ export const getDelete = (path, id) => {
     method: "DELETE",
   });
 };
+
+export const patchAPI = (path, id, data) => {
+  return fetch(`${baseUrl}/${path}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({
+      description: data.description,
+      image: data.image,
+    }),
+  });
+};

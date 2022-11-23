@@ -1,4 +1,4 @@
-import { get, getDelete, post } from "./api";
+import { get, getDelete, patchAPI, post } from "./api";
 import userPic from "../assets/user-pic.svg";
 const initialState = {
   profile: {},
@@ -43,6 +43,7 @@ const initialState = {
   loading: false,
   postAddLoading: false,
   postIdLoading: false,
+  postUpDataLoading: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -69,6 +70,24 @@ export const reducer = (state = initialState, action) => {
         postIdLoading: false,
         posts: state.posts.filter((item) => item.id !== action.payload),
       };
+    case "post/upData/started":
+      return { ...state, postUpDataLoading: true };
+    case "post/upData/fulfilled":
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post.id === action.payload.id
+            ? {
+                ...post,
+                description: action.payload.description,
+                image: action.payload.image,
+              }
+            : post
+        ),
+        postUpDataLoading: false,
+      };
+    case "fulfilled":
+      return { ...state, loading: false };
     default:
       return state;
   }
@@ -115,5 +134,18 @@ export const deletePost = (id) => {
     dispatch({ type: "post/getDelete/started" });
     await getDelete("posts", id);
     dispatch({ type: "post/getDelete/fulfilled", payload: id });
+  };
+};
+
+export const upDataPost = (id, description, image) => {
+  return async (dispatch) => {
+    dispatch({ type: "post/upData/started" });
+    await patchAPI("posts", id, { description, image });
+
+    dispatch({
+      type: "post/upData/fulfilled",
+      payload: { id, description, image },
+    });
+    dispatch({ type: "fulfilled" });
   };
 };

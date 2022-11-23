@@ -30,8 +30,10 @@
     width: 550px;
     margin: auto;
     .options {
-      font-size: 30px;
       margin-top: 4px;
+      .points{
+        font-size: 30px;
+      }
     }
   }
   .account {
