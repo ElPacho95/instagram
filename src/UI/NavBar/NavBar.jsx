@@ -12,10 +12,9 @@ import React, { useState } from "react";
 import { addPost } from "../../store/reducer";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const [modalActive, setModalActive] = useState(false);
-
-  const dispatch = useDispatch();
 
   const handleAddPost = (imageUrl, description) => {
     const Post = {

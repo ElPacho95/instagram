@@ -64,15 +64,15 @@ export const reducer = (state = initialState, action) => {
       };
     case "post/getDelete/started":
       return { ...state, postIdLoading: true };
-    case "post/getDelete/fulfilled":
+    case "post/Delete/fulfilled":
       return {
         ...state,
         postIdLoading: false,
         posts: state.posts.filter((item) => item.id !== action.payload),
       };
-    case "post/upData/started":
+    case "post/upDate/started":
       return { ...state, postUpDataLoading: true };
-    case "post/upData/fulfilled":
+    case "post/upDate/fulfilled":
       return {
         ...state,
         posts: state.posts.map((post) =>
@@ -131,19 +131,19 @@ export const addPost = (body) => {
 
 export const deletePost = (id) => {
   return async (dispatch) => {
-    dispatch({ type: "post/getDelete/started" });
+    dispatch({ type: "post/Delete/started" });
     await getDelete("posts", id);
-    dispatch({ type: "post/getDelete/fulfilled", payload: id });
+    dispatch({ type: "post/Delete/fulfilled", payload: id });
   };
 };
 
 export const upDatePost = (id, description, image) => {
   return async (dispatch) => {
-    dispatch({ type: "post/upData/started" });
+    dispatch({ type: "post/upDate/started" });
     await patchAPI("posts", id, { description, image });
 
     dispatch({
-      type: "post/upData/fulfilled",
+      type: "post/upDate/fulfilled",
       payload: { id, description, image },
     });
     dispatch({ type: "fulfilled" });

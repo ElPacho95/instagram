@@ -20,6 +20,7 @@ const Modal = ({
   if (!active) {
     return null;
   }
+
   return (
     <div
       className={active ? "modal active" : "modal"}

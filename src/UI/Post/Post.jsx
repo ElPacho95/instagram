@@ -14,7 +14,6 @@ const Post = (props) => {
   const dispatch = useDispatch();
   const { likes, description, image, id, comments } = props;
   const profile = useSelector((state) => state.profile);
-
   const [showDescription, setShowDescription] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [open, setOpen] = useState(false);
@@ -24,10 +23,12 @@ const Post = (props) => {
     dispatch(upDatePost(id, newDescription, imageUrl));
     setModalActive(false);
   };
+
   const handleDeletePost = () => {
     dispatch(deletePost(id));
     setOpen(false);
   };
+
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -66,16 +67,13 @@ const Post = (props) => {
           <img src={save} alt="" />
         </div>
       </div>
-
       <div className="userBlock">
         <div className="likes">{!likes ? 0 : likes} likes</div>
         <div className="title">
           <span className="userName">{profile.username}</span>
-
           <span className="userComment">
             {showDescription ? description : description.substring(0, 100)}
           </span>
-
           {description.length > 100 && (
             <span>
               <button
@@ -91,7 +89,7 @@ const Post = (props) => {
         {showComments &&
           comments.map((item) => {
             return (
-              <div className="title">
+              <div key={item.id} className="title">
                 <span className="userName">{item.user.username}</span>
                 <span className="userComment">{item.text}</span>
               </div>

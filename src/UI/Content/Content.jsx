@@ -6,10 +6,9 @@ import Suggestions from "../Suggestions/Suggestions";
 import "./Content.scss";
 
 const Content = () => {
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
   const posts = useSelector((state) => state.posts);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadPosts());
@@ -37,7 +36,6 @@ const Content = () => {
             );
           })}
         </div>
-
         <Suggestions />
       </div>
     </div>
