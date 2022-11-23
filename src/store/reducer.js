@@ -137,7 +137,7 @@ export const deletePost = (id) => {
   };
 };
 
-export const upDataPost = (id, description, image) => {
+export const upDatePost = (id, description, image) => {
   return async (dispatch) => {
     dispatch({ type: "post/upData/started" });
     await patchAPI("posts", id, { description, image });

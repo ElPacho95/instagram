@@ -4,18 +4,30 @@ import commentsIcon from "../../assets/comments.svg";
 import send from "../../assets/share.svg";
 import save from "../../assets/save.svg";
 import emojis from "../../assets/emojis.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Post.scss";
 import Dropdown from "../../Dropdown/Dropdown";
+import Modal from "../Modal/Modal";
+import { deletePost, upDatePost } from "../../store/reducer";
 
 const Post = (props) => {
+  const dispatch = useDispatch();
   const { likes, description, image, id, comments } = props;
   const profile = useSelector((state) => state.profile);
 
   const [showDescription, setShowDescription] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [open, setOpen] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
+  const handleUpdatePost = (imageUrl, newDescription) => {
+    dispatch(upDatePost(id, newDescription, imageUrl));
+    setModalActive(false);
+  };
+  const handleDeletePost = () => {
+    dispatch(deletePost(id));
+    setOpen(false);
+  };
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -30,7 +42,15 @@ const Post = (props) => {
           <div className="userName">{profile.username}</div>
         </div>
         <div onClick={handleOpen} className="options">
-          {open ? <Dropdown id={id} /> : <div className="points">...</div>}
+          {open ? (
+            <Dropdown
+              id={id}
+              openEditModal={() => setModalActive(true)}
+              deletePost={handleDeletePost}
+            />
+          ) : (
+            <div className="points">...</div>
+          )}
         </div>
       </div>
       <div className="post__img">
@@ -62,7 +82,7 @@ const Post = (props) => {
                 onClick={() => setShowDescription(!showDescription)}
                 className="alpha"
               >
-                {showDescription ? "close" : "...more"}
+                {showDescription || "...more"}
               </button>
             </span>
           )}
@@ -88,6 +108,15 @@ const Post = (props) => {
         <input type="text" placeholder="Add a comment..." />
         <button>Post</button>
       </div>
+      <Modal
+        active={modalActive}
+        setActive={setModalActive}
+        defaultDescription={description}
+        defaultImage={image}
+        onSubmit={handleUpdatePost}
+        title="Изменение Публикации"
+        button="Изменить"
+      />
     </div>
   );
 };
