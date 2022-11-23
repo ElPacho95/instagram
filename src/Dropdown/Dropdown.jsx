@@ -1,5 +1,4 @@
 import "./Dropdown.scss";
-import React, { useState } from "react";
 
 const Dropdown = ({ openEditModal, deletePost }) => {
   return (
