@@ -18,6 +18,7 @@
       }
     }
     .form {
+      width: 252px;
       display: flex;
       align-items: center;
       background: #efefef;
@@ -32,12 +33,11 @@
       }
       input {
         outline: none;
-        width: 252px;
+        flex: 1;
         height: 36px;
-        background: #efefef;
+        background: transparent;
         font-weight: 400;
         font-size: 16px;
-        border-radius: 8px;
         border: none;
       }
     }

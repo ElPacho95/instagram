@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import heart from "../../assets/heart.svg";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { deletePost, updatePost } from "../../store/reducer";
+
 import commentsIcon from "../../assets/comments.svg";
+import emojis from "../../assets/emojis.svg";
+import heart from "../../assets/heart.svg";
 import send from "../../assets/share.svg";
 import save from "../../assets/save.svg";
-import emojis from "../../assets/emojis.svg";
-import { useDispatch, useSelector } from "react-redux";
-import "./Post.scss";
+
 import Dropdown from "../Dropdown/Dropdown";
 import Modal from "../Modal/Modal";
-import { deletePost, updatePost } from "../../store/reducer";
+
+import "./Post.scss";
 
 const Post = (props) => {
   const dispatch = useDispatch();
@@ -113,7 +117,7 @@ const Post = (props) => {
           type="text"
           placeholder="Add a comment..."
         />
-        <button className={commentInput ? "addPostActive" : "add-comment--"}>
+        <button className={commentInput ? "addPostActive" : "add-comment"}>
           Post
         </button>
       </div>

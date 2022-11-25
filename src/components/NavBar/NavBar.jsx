@@ -1,15 +1,19 @@
-import logo from "../../assets/logo.png";
-import home from "../../assets/home.svg";
-import msg from "../../assets/msg.svg";
-import add from "../../assets/add.svg";
-import compass from "../../assets/compass.svg";
-import heart from "../../assets/heart.svg";
-import search from "../../assets/search.svg";
-import { useDispatch, useSelector } from "react-redux";
-import Modal from "../Modal/Modal";
-import "./NavBar.scss";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { addPost } from "../../store/reducer";
+
+import Modal from "../Modal/Modal";
+
+import compass from "../../assets/compass.svg";
+import search from "../../assets/search.svg";
+import heart from "../../assets/heart.svg";
+import home from "../../assets/home.svg";
+import logo from "../../assets/logo.png";
+import msg from "../../assets/msge.svg";
+import add from "../../assets/add.svg";
+
+import "./NavBar.scss";
 
 const NavBar = () => {
   const dispatch = useDispatch();

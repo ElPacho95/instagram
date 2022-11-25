@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { loadPosts, loadProfile } from "../../store/reducer";
-import Post from "../Post/Post";
+
 import Suggestions from "../Suggestions/Suggestions";
-import "./Content.scss";
+import Post from "../Post/Post";
+
 import instagramPic from "../../assets/favicon.ico";
+
+import "./Content.scss";
 
 const Content = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,10 @@
-import "./Modal.scss";
-import React, { useState } from "react";
-import arrow from "../../assets/Arrow 1.svg";
-import emojis from "../../assets/emojis.svg";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+
+import emojis from "../../assets/emojis.svg";
+import arrow from "../../assets/arrow.svg";
+
+import "./Modal.scss";
 
 const Modal = ({
   active,

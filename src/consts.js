@@ -1,5 +1,7 @@
 import userPic from "./assets/user-pic.svg";
+
 export const baseUrl = "http://localhost:3000";
+
 export const suggestions = [
   {
     id: 1,

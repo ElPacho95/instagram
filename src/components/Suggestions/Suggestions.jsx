@@ -1,6 +1,7 @@
-import React from "react";
 import { useSelector } from "react-redux";
+
 import Account from "../Account/Account";
+
 import "./Suggestions.scss";
 
 const Suggestions = () => {
