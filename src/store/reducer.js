@@ -1,46 +1,12 @@
-import { get, getDelete, patchAPI, post } from "./api";
-import userPic from "../assets/user-pic.svg";
+import { get, del, patch, post } from "./api";
+import { suggestions } from "../consts";
+
 const initialState = {
   profile: {},
   posts: [],
-  profiles: [
-    {
-      id: 1,
-      nickName: "janedoe",
-      suggestion: "Suggestion for you",
-      image: userPic,
-      btn: "Follow",
-    },
-    {
-      id: 2,
-      nickName: "robertdoe",
-      suggestion: "Suggestion for you",
-      image: userPic,
-      btn: "Follow",
-    },
-    {
-      id: 3,
-      nickName: "sandradoe",
-      suggestion: "Suggestion for you",
-      image: userPic,
-      btn: "Follow",
-    },
-    {
-      id: 4,
-      nickName: "pepedoe_",
-      suggestion: "Suggestion for you",
-      image: userPic,
-      btn: "Follow",
-    },
-    {
-      id: 5,
-      nickName: "simon.doe",
-      suggestion: "Suggestion for you",
-      image: userPic,
-      btn: "Follow",
-    },
-  ],
-  loading: false,
+  suggestions,
+  loadPosts: true,
+  loadProfile: false,
   postAddLoading: false,
   postIdLoading: false,
   postUpDataLoading: false,
@@ -48,12 +14,14 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "pending":
-      return { ...state, loading: true };
+    case "profile/load/started":
+      return { ...state, loadProfile: true };
     case "profile/load/fulfilled":
-      return { ...state, profile: action.payload, loading: false };
+      return { ...state, profile: action.payload, loadProfile: false };
+    case "posts/load/started":
+      return { ...state, loadPosts: true };
     case "posts/load/fulfilled":
-      return { ...state, posts: action.payload, loading: false };
+      return { ...state, posts: action.payload, loadPosts: false };
     case "post/add/started":
       return { ...state, postAddLoading: true };
     case "post/add/fulfilled":
@@ -62,17 +30,17 @@ export const reducer = (state = initialState, action) => {
         postAddLoading: false,
         posts: [action.payload, ...state.posts],
       };
-    case "post/getDelete/started":
+    case "post/delete/started":
       return { ...state, postIdLoading: true };
-    case "post/Delete/fulfilled":
+    case "post/delete/fulfilled":
       return {
         ...state,
         postIdLoading: false,
         posts: state.posts.filter((item) => item.id !== action.payload),
       };
-    case "post/upDate/started":
+    case "post/update/started":
       return { ...state, postUpDataLoading: true };
-    case "post/upDate/fulfilled":
+    case "post/update/fulfilled":
       return {
         ...state,
         posts: state.posts.map((post) =>
@@ -86,8 +54,6 @@ export const reducer = (state = initialState, action) => {
         ),
         postUpDataLoading: false,
       };
-    case "fulfilled":
-      return { ...state, loading: false };
     default:
       return state;
   }
@@ -131,19 +97,19 @@ export const addPost = (body) => {
 
 export const deletePost = (id) => {
   return async (dispatch) => {
-    dispatch({ type: "post/Delete/started" });
-    await getDelete("posts", id);
-    dispatch({ type: "post/Delete/fulfilled", payload: id });
+    dispatch({ type: "post/delete/started" });
+    await del("posts", id);
+    dispatch({ type: "post/delete/fulfilled", payload: id });
   };
 };
 
-export const upDatePost = (id, description, image) => {
+export const updatePost = (id, description, image) => {
   return async (dispatch) => {
-    dispatch({ type: "post/upDate/started" });
-    await patchAPI("posts", id, { description, image });
+    dispatch({ type: "post/update/started" });
+    await patch("posts", id, JSON.stringify({ description, image }));
 
     dispatch({
-      type: "post/upDate/fulfilled",
+      type: "post/update/fulfilled",
       payload: { id, description, image },
     });
     dispatch({ type: "fulfilled" });

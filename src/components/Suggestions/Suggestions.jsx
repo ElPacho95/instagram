@@ -5,13 +5,13 @@ import "./Suggestions.scss";
 
 const Suggestions = () => {
   const profile = useSelector((state) => state.profile);
-  const profiles = useSelector((state) => state.profiles);
+  const suggestions = useSelector((state) => state.suggestions);
 
   return (
     <div className="accounts" style={{ marginTop: "50px" }}>
       <div className="suggestions">
         <div>
-          <div className="myAccount">
+          <div className="my-account">
             <img src={profile.profile_img} alt="" />
             <div className="title">
               <p>{profile.username}</p>
@@ -20,13 +20,13 @@ const Suggestions = () => {
             <button className="change">Change</button>
           </div>
         </div>
-        <div className="allSuggestions">
+        <div className="all-suggestions">
           <p className="alpha">Suggestions for you</p>
           <button>See all</button>
         </div>
       </div>
       <div>
-        {profiles.map((item) => {
+        {suggestions.map((item) => {
           return (
             <Account
               nickName={item.nickName}

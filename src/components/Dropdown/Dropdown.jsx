@@ -3,7 +3,7 @@ import "./Dropdown.scss";
 const Dropdown = ({ openEditModal, deletePost }) => {
   return (
     <div className="dropdown">
-      <div className="options">...</div>
+      <div className="points">...</div>
       <div className="dropdown-content">
         <button onClick={openEditModal} className="change">
           Change

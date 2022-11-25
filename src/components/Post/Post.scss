@@ -4,7 +4,7 @@
   margin-top: 20px;
   border-radius: 3px 3px 0px 0px;
   border: 1px solid #efefef;
-  .userBlock {
+  .user-block {
     margin: 17px;
     .likes {
       font-weight: 500;
@@ -12,20 +12,20 @@
     }
     .title {
       margin-top: 7px;
-      .userComment {
+      .user-comment {
         margin-left: 8px;
         font-size: 14px;
       }
     }
   }
-  &__img {
+  .user-post {
     img {
       width: 600px;
       height: 600px;
       object-fit: cover;
     }
   }
-  &__header {
+  .post-header {
     display: flex;
     justify-content: space-between;
     width: 550px;
@@ -43,16 +43,16 @@
     align-items: center;
     width: 170px;
     height: 60px;
-    &__img {
+    .user-picture {
       img {
         width: 32px;
         height: 32px;
         background: #c4c4c4;
-        border-radius: 15px;
+        border-radius: 20px;
       }
     }
   }
-  &__icons {
+  .post-icons {
     display: flex;
     justify-content: space-between;
     margin: 12px auto;
@@ -87,10 +87,18 @@
     width: 500px;
     height: 52px;
   }
-  button {
+  .add-comment {
     font-weight: 500;
     font-size: 14px;
     color: rgba(0, 149, 246, 0.25);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .addPostActive {
+    font-weight: 500;
+    font-size: 14px;
+    color: #0095f6;
     background: transparent;
     border: none;
     cursor: pointer;

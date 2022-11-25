@@ -1,11 +1,10 @@
-import React from "react";
 import "./Account.scss";
 
 const Account = ({ suggestion, nickName, image, btn }) => {
   return (
     <div className="suggestions">
       <div>
-        <div className="suggestionsAccount">
+        <div className="suggestions-account">
           <img src={image} alt="" />
           <div className="title">
             <p className="nickname">{nickName}</p>

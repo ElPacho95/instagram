@@ -6,9 +6,9 @@ import save from "../../assets/save.svg";
 import emojis from "../../assets/emojis.svg";
 import { useDispatch, useSelector } from "react-redux";
 import "./Post.scss";
-import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import Modal from "../Modal/Modal";
-import { deletePost, upDatePost } from "../../store/reducer";
+import { deletePost, updatePost } from "../../store/reducer";
 
 const Post = (props) => {
   const dispatch = useDispatch();
@@ -18,9 +18,10 @@ const Post = (props) => {
   const [showComments, setShowComments] = useState(false);
   const [open, setOpen] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
 
   const handleUpdatePost = (imageUrl, newDescription) => {
-    dispatch(upDatePost(id, newDescription, imageUrl));
+    dispatch(updatePost(id, newDescription, imageUrl));
     setModalActive(false);
   };
 
@@ -35,12 +36,12 @@ const Post = (props) => {
 
   return (
     <div className="post">
-      <div className="post__header">
+      <div className="post-header">
         <div className="account">
-          <div className="account__img">
+          <div className="user-picture">
             <img src={profile.profile_img} alt="" />
           </div>
-          <div className="userName">{profile.username}</div>
+          <div className="username">{profile.username}</div>
         </div>
         <div onClick={handleOpen} className="options">
           {open ? (
@@ -54,10 +55,10 @@ const Post = (props) => {
           )}
         </div>
       </div>
-      <div className="post__img">
+      <div className="user-post">
         <img src={image} alt="" />
       </div>
-      <div className="post__icons">
+      <div className="post-icons">
         <div className="elements">
           <img src={heart} alt="" />
           <img src={commentsIcon} alt="" />
@@ -67,18 +68,18 @@ const Post = (props) => {
           <img src={save} alt="" />
         </div>
       </div>
-      <div className="userBlock">
+      <div className="user-block">
         <div className="likes">{!likes ? 0 : likes} likes</div>
         <div className="title">
-          <span className="userName">{profile.username}</span>
-          <span className="userComment">
+          <span className="username">{profile.username}</span>
+          <span className="user-comment">
             {showDescription ? description : description.substring(0, 100)}
           </span>
           {description.length > 100 && (
             <span>
               <button
                 onClick={() => setShowDescription(!showDescription)}
-                className="alpha"
+                className="alpha cursor"
               >
                 {showDescription || "...more"}
               </button>
@@ -90,12 +91,15 @@ const Post = (props) => {
           comments.map((item) => {
             return (
               <div key={item.id} className="title">
-                <span className="userName">{item.user.username}</span>
-                <span className="userComment">{item.text}</span>
+                <span className="username">{item.user.username}</span>
+                <span className="user-comment">{item.text}</span>
               </div>
             );
           })}
-        <p onClick={() => setShowComments(!showComments)} className="alpha">
+        <p
+          onClick={() => setShowComments(!showComments)}
+          className="alpha cursor"
+        >
           {showComments ? "Hide comments" : "See comments"}
         </p>
 
@@ -103,8 +107,15 @@ const Post = (props) => {
       </div>
       <div className="form-card">
         <img src={emojis} alt="" />
-        <input type="text" placeholder="Add a comment..." />
-        <button>Post</button>
+        <input
+          value={commentInput}
+          onChange={(e) => setCommentInput(e.currentTarget.value)}
+          type="text"
+          placeholder="Add a comment..."
+        />
+        <button className={commentInput ? "addPostActive" : "add-comment--"}>
+          Post
+        </button>
       </div>
       <Modal
         active={modalActive}

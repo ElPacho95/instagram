@@ -1,4 +1,4 @@
-import logo from "../../assets/LOGO.png";
+import logo from "../../assets/logo.png";
 import home from "../../assets/home.svg";
 import msg from "../../assets/msg.svg";
 import add from "../../assets/add.svg";
@@ -8,7 +8,7 @@ import search from "../../assets/search.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import "./NavBar.scss";
-import React, { useState } from "react";
+import { useState } from "react";
 import { addPost } from "../../store/reducer";
 
 const NavBar = () => {
@@ -17,13 +17,13 @@ const NavBar = () => {
   const [modalActive, setModalActive] = useState(false);
 
   const handleAddPost = (imageUrl, description) => {
-    const Post = {
+    const post = {
       image: imageUrl,
       description: description,
       comments: [],
       user: profile,
     };
-    dispatch(addPost(Post));
+    dispatch(addPost(post));
     setModalActive(false);
   };
 
@@ -37,7 +37,7 @@ const NavBar = () => {
         button="Поделиться"
       />
       <div className="header">
-        <div className="navBar">
+        <div className="nav-bar">
           <div className="logo">
             <img src={logo} alt="" />
           </div>

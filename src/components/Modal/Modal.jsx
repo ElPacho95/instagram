@@ -22,11 +22,8 @@ const Modal = ({
   }
 
   return (
-    <div
-      className={active ? "modal active" : "modal"}
-      onClick={() => setActive(false)}
-    >
-      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal" onClick={() => setActive(false)}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <img onClick={() => setActive(false)} src={arrow} alt="" />
           <h1>{title}</h1>
@@ -36,7 +33,7 @@ const Modal = ({
         </div>
         <div className="form-block">
           <div className="account">
-            <div className="account__img">
+            <div className="user-pic">
               <img src={profile.profile_img} alt="" />
             </div>
             <div>{profile.username}</div>

@@ -22,7 +22,19 @@ code {
   font-size: 14px;
   height: 13px;
 }
-.userName {
+.username {
   font-weight: 500;
   font-size: 14px;
+}
+.cursor {
+  cursor: pointer;
+}
+
+.loading {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  margin: 250px auto;
+  justify-content: center;
 }
